@@ -18,15 +18,12 @@ punrar                        = xbmc.translatePath(__dependancies__ + '/bin/unra
 
 xbmc.log('AUDO: ' + parch + ' architecture detected', level=xbmc.LOGDEBUG)
 
-if parch.startswith('arm'):
-    parch = 'arm'
-
 if xbmcvfs.exists(xbmc.translatePath(__dependancies__ + '/arch.i686')):
     xbmcvfs.delete(xbmc.translatePath(__dependancies__ + '/arch.i686'))
 if xbmcvfs.exists(xbmc.translatePath(__dependancies__ + '/arch.x86_64')):
     xbmcvfs.delete(xbmc.translatePath(__dependancies__ + '/arch.x86_64'))
-if xbmcvfs.exists(xbmc.translatePath(__dependancies__ + '/arch.arm')):
-    xbmcvfs.delete(xbmc.translatePath(__dependancies__ + '/arch.arm'))
+if xbmcvfs.exists(xbmc.translatePath(__dependancies__ + '/arch.armv6l')):
+    xbmcvfs.delete(xbmc.translatePath(__dependancies__ + '/arch.armv6l'))
 
 try:
     fnamemapper = xbmc.translatePath(__dependancies__ + '/lib/multiarch/_namemapper.so.' + parch)
