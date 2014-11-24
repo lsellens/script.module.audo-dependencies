@@ -9,6 +9,7 @@
   </requires>
   <extension point="xbmc.python.module"
              library="lib" />
+  </extension>
   <extension point="xbmc.addon.metadata">
     <summary>Dependancies for audo</summary>
     <description>This is a package of dependancies for audo. Containes multi architecture files of Cheatah, Openssl, configobj, yenc, unrar, and unzip</description>
