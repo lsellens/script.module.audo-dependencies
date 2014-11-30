@@ -1,3 +1,6 @@
+0.0.3
+- unrar - 5.2.2
+
 0.0.2
 - removed bytecode for multiple interpreter compatibility
 - added binaries for armv7l devices
