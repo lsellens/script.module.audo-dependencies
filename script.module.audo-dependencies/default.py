@@ -26,9 +26,6 @@ if xbmcvfs.exists(xbmc.translatePath(__dependancies__ + '/arch.armv6l')):
     xbmcvfs.delete(xbmc.translatePath(__dependancies__ + '/arch.armv6l'))
 if xbmcvfs.exists(xbmc.translatePath(__dependancies__ + '/arch.armv7l')):
     xbmcvfs.delete(xbmc.translatePath(__dependancies__ + '/arch.armv7l'))
-#temp line to remove old architecture tag
-if xbmcvfs.exists(xbmc.translatePath(__dependancies__ + '/arch.arm')):
-    xbmcvfs.delete(xbmc.translatePath(__dependancies__ + '/arch.arm'))
 
 try:
     fnamemapper = xbmc.translatePath(__dependancies__ + '/lib/multiarch/_namemapper.so.' + parch)
