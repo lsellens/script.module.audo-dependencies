@@ -12,6 +12,10 @@ pnamemapper                   = xbmc.translatePath(__dependancies__ + '/lib/Chee
 pssl                          = xbmc.translatePath(__dependancies__ + '/lib/OpenSSL/SSL.so')
 prand                         = xbmc.translatePath(__dependancies__ + '/lib/OpenSSL/rand.so')
 pcrypto                       = xbmc.translatePath(__dependancies__ + '/lib/OpenSSL/crypto.so')
+plibcrypto                    = xbmc.translatePath(__dependancies__ + '/lib/OpenSSL/libcrypto.so.1.0.0')
+plibssl                       = xbmc.translatePath(__dependancies__ + '/lib/OpenSSL/libssl.so.1.0.0')
+plibcryptolk                  = xbmc.translatePath(__dependancies__ + '/lib/libcrypto.so.1.0.0')
+plibssllk                     = xbmc.translatePath(__dependancies__ + '/lib/libssl.so.1.0.0')
 pyenc                         = xbmc.translatePath(__dependancies__ + '/lib/_yenc.so')
 ppar2                         = xbmc.translatePath(__dependancies__ + '/bin/par2')
 punrar                        = xbmc.translatePath(__dependancies__ + '/bin/unrar')
@@ -57,6 +61,24 @@ try:
     xbmc.log('AUDO: Copied crypto.so for ' + parch, level=xbmc.LOGDEBUG)
 except Exception, e:
     xbmc.log('AUDO: Error Copying crypto.so for ' + parch, level=xbmc.LOGERROR)
+    xbmc.log(str(e), level=xbmc.LOGERROR)
+
+try:
+    flibcrypto = xbmc.translatePath(__dependancies__ + '/lib/multiarch/libcrypto.so.1.0.0.' + parch)
+    xbmcvfs.copy(flibcrypto, plibcrypto)
+    os.symlink(plibcrypto, plibcryptolk)
+    xbmc.log('AUDO: Copied libcrypto for ' + parch, level=xbmc.LOGDEBUG)
+except Exception, e:
+    xbmc.log('AUDO: Error Copying libcrypto for ' + parch, level=xbmc.LOGERROR)
+    xbmc.log(str(e), level=xbmc.LOGERROR)
+
+try:
+    flibssl = xbmc.translatePath(__dependancies__ + '/lib/multiarch/libssl.so.1.0.0.' + parch)
+    xbmcvfs.copy(flibssl, plibssl)
+    os.symlink(plibssl, plibssllk)
+    xbmc.log('AUDO: Copied libssl for ' + parch, level=xbmc.LOGDEBUG)
+except Exception, e:
+    xbmc.log('AUDO: Error Copying libssl for ' + parch, level=xbmc.LOGERROR)
     xbmc.log(str(e), level=xbmc.LOGERROR)
 
 try:

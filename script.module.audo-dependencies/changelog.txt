@@ -1,3 +1,8 @@
+0.0.4
+- temp fix for SSL issues with kodi
+- added openssl 1.0.1h libs
+- pyopenssl 0.11
+
 0.0.3
 - unrar - 5.2.2
 
