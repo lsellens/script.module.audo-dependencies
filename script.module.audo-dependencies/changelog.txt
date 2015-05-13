@@ -1,3 +1,6 @@
+0.0.6
+- modified configobj for nzbget
+
 0.0.5
 - fix ssl on RPi2 and other armv7 devices
 
