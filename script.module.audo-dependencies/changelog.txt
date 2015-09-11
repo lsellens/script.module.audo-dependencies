@@ -1,4 +1,7 @@
 0.0.6
+- added mako 1.0.1 for sickrage
+- removed 32bit binaries(contact me if you're stuck on a 32bit install)
+- update to pyOpenSSL-0.13
 - modified configobj for nzbget
 
 0.0.5
