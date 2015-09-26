@@ -32,6 +32,7 @@ if xbmcvfs.exists(xbmc.translatePath(__dependancies__ + '/arch.armv7l')):
 try:
     fnamemapper = xbmc.translatePath(__dependancies__ + '/lib/multiarch/_namemapper.so.' + parch)
     xbmcvfs.copy(fnamemapper, pnamemapper)
+    os.chmod(pnamemapper, 0755)
     xbmc.log('AUDO: Copied _namemapper.so for ' + parch, level=xbmc.LOGDEBUG)
 except Exception, e:
     xbmc.log('AUDO: Error Copying _namemapper.so for ' + parch, level=xbmc.LOGERROR)
@@ -40,6 +41,7 @@ except Exception, e:
 try:
     fssl = xbmc.translatePath(__dependancies__ + '/lib/multiarch/SSL.so.' + parch)
     xbmcvfs.copy(fssl, pssl)
+    os.chmod(pssl, 0755)
     xbmc.log('AUDO: Copied SSL.so for ' + parch, level=xbmc.LOGDEBUG)
 except Exception, e:
     xbmc.log('AUDO: Error Copying SSL.so for ' + parch, level=xbmc.LOGERROR)
@@ -48,6 +50,7 @@ except Exception, e:
 try:
     frand = xbmc.translatePath(__dependancies__ + '/lib/multiarch/rand.so.' + parch)
     xbmcvfs.copy(frand, prand)
+    os.chmod(prand, 0755)
     xbmc.log('AUDO: Copied rand.so for ' + parch, level=xbmc.LOGDEBUG)
 except Exception, e:
     xbmc.log('AUDO: Error Copying rand.so for ' + parch, level=xbmc.LOGERROR)
@@ -56,6 +59,7 @@ except Exception, e:
 try:
     fcrypto = xbmc.translatePath(__dependancies__ + '/lib/multiarch/crypto.so.' + parch)
     xbmcvfs.copy(fcrypto, pcrypto)
+    os.chmod(pcrypto, 0755)
     xbmc.log('AUDO: Copied crypto.so for ' + parch, level=xbmc.LOGDEBUG)
 except Exception, e:
     xbmc.log('AUDO: Error Copying crypto.so for ' + parch, level=xbmc.LOGERROR)
@@ -64,6 +68,7 @@ except Exception, e:
 try:
     flibcrypto = xbmc.translatePath(__dependancies__ + '/lib/multiarch/libcrypto.so.1.0.0.' + parch)
     xbmcvfs.copy(flibcrypto, plibcrypto)
+    os.chmod(plibcrypto, 0755)
     os.symlink(plibcrypto, plibcryptolk)
     xbmc.log('AUDO: Copied libcrypto for ' + parch, level=xbmc.LOGDEBUG)
 except Exception, e:
@@ -73,6 +78,7 @@ except Exception, e:
 try:
     flibssl = xbmc.translatePath(__dependancies__ + '/lib/multiarch/libssl.so.1.0.0.' + parch)
     xbmcvfs.copy(flibssl, plibssl)
+    os.chmod(plibssl, 0755)
     os.symlink(plibssl, plibssllk)
     xbmc.log('AUDO: Copied libssl for ' + parch, level=xbmc.LOGDEBUG)
 except Exception, e:
@@ -82,6 +88,7 @@ except Exception, e:
 try:
     fyenc = xbmc.translatePath(__dependancies__ + '/lib/multiarch/_yenc.so.' + parch)
     xbmcvfs.copy(fyenc, pyenc)
+    os.chmod(pyenc, 0755)
     xbmc.log('AUDO: Copied _yenc.so for ' + parch, level=xbmc.LOGDEBUG)
 except Exception, e:
     xbmc.log('AUDO: Error Copying _yenc.so for ' + parch, level=xbmc.LOGERROR)

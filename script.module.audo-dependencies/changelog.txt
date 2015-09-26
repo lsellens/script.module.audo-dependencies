@@ -3,6 +3,8 @@
 - removed 32bit binaries(contact me if you're stuck on a 32bit install)
 - update to pyOpenSSL-0.13
 - modified configobj for nzbget
+- updated to unrar 5.30 beta4
+- added distutils python module
 
 0.0.5
 - fix ssl on RPi2 and other armv7 devices
