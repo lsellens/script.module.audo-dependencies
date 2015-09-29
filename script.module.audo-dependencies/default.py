@@ -30,6 +30,8 @@ if xbmcvfs.exists(xbmc.translatePath(__dependancies__ + '/arch.armv7l')):
     xbmcvfs.delete(xbmc.translatePath(__dependancies__ + '/arch.armv7l'))
 
 try:
+    if xbmcvfs.exists(pnamemapper):
+        xbmcvfs.delete(pnamemapper)
     fnamemapper = xbmc.translatePath(__dependancies__ + '/lib/multiarch/_namemapper.so.' + parch)
     xbmcvfs.copy(fnamemapper, pnamemapper)
     os.chmod(pnamemapper, 0755)
@@ -39,6 +41,8 @@ except Exception, e:
     xbmc.log(str(e), level=xbmc.LOGERROR)
 
 try:
+    if xbmcvfs.exists(pssl):
+        xbmcvfs.delete(pssl)
     fssl = xbmc.translatePath(__dependancies__ + '/lib/multiarch/SSL.so.' + parch)
     xbmcvfs.copy(fssl, pssl)
     os.chmod(pssl, 0755)
@@ -48,6 +52,8 @@ except Exception, e:
     xbmc.log(str(e), level=xbmc.LOGERROR)
 
 try:
+    if xbmcvfs.exists(prand):
+        xbmcvfs.delete(prand)
     frand = xbmc.translatePath(__dependancies__ + '/lib/multiarch/rand.so.' + parch)
     xbmcvfs.copy(frand, prand)
     os.chmod(prand, 0755)
@@ -57,6 +63,8 @@ except Exception, e:
     xbmc.log(str(e), level=xbmc.LOGERROR)
 
 try:
+    if xbmcvfs.exists(pcrypto):
+        xbmcvfs.delete(pcrypto)
     fcrypto = xbmc.translatePath(__dependancies__ + '/lib/multiarch/crypto.so.' + parch)
     xbmcvfs.copy(fcrypto, pcrypto)
     os.chmod(pcrypto, 0755)
@@ -66,6 +74,8 @@ except Exception, e:
     xbmc.log(str(e), level=xbmc.LOGERROR)
 
 try:
+    if xbmcvfs.exists(plibcrypto):
+        xbmcvfs.delete(plibcrypto)
     flibcrypto = xbmc.translatePath(__dependancies__ + '/lib/multiarch/libcrypto.so.1.0.0.' + parch)
     xbmcvfs.copy(flibcrypto, plibcrypto)
     os.chmod(plibcrypto, 0755)
@@ -76,6 +86,8 @@ except Exception, e:
     xbmc.log(str(e), level=xbmc.LOGERROR)
 
 try:
+    if xbmcvfs.exists(plibssl):
+        xbmcvfs.delete(plibssl)
     flibssl = xbmc.translatePath(__dependancies__ + '/lib/multiarch/libssl.so.1.0.0.' + parch)
     xbmcvfs.copy(flibssl, plibssl)
     os.chmod(plibssl, 0755)
@@ -86,6 +98,8 @@ except Exception, e:
     xbmc.log(str(e), level=xbmc.LOGERROR)
 
 try:
+    if xbmcvfs.exists(pyenc):
+        xbmcvfs.delete(pyenc)
     fyenc = xbmc.translatePath(__dependancies__ + '/lib/multiarch/_yenc.so.' + parch)
     xbmcvfs.copy(fyenc, pyenc)
     os.chmod(pyenc, 0755)
@@ -95,6 +109,8 @@ except Exception, e:
     xbmc.log(str(e), level=xbmc.LOGERROR)
 
 try:
+    if xbmcvfs.exists(ppar2):
+        xbmcvfs.delete(ppar2)
     fpar2 = xbmc.translatePath(__dependancies__ + '/lib/multiarch/par2.' + parch)
     xbmcvfs.copy(fpar2, ppar2)
     os.chmod(ppar2, 0755)
@@ -104,6 +120,8 @@ except Exception, e:
     xbmc.log(str(e), level=xbmc.LOGERROR)
 
 try:
+    if xbmcvfs.exists(punrar):
+        xbmcvfs.delete(punrar)
     funrar = xbmc.translatePath(__dependancies__ + '/lib/multiarch/unrar.' + parch)
     xbmcvfs.copy(funrar, punrar)
     os.chmod(punrar, 0755)
