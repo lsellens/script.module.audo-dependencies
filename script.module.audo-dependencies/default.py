@@ -19,6 +19,7 @@ plibssllk                     = xbmc.translatePath(__dependencies__ + '/lib/libs
 pyenc                         = xbmc.translatePath(__dependencies__ + '/lib/_yenc.so')
 ppar2                         = xbmc.translatePath(__dependencies__ + '/bin/par2')
 punrar                        = xbmc.translatePath(__dependencies__ + '/bin/unrar')
+p7za                          = xbmc.translatePath(__dependencies__ + '/bin/7za')
 
 xbmc.log('AUDO: ' + parch + ' architecture detected', level=xbmc.LOGDEBUG)
 
@@ -128,6 +129,17 @@ try:
     xbmc.log('AUDO: Copied unrar for ' + parch, level=xbmc.LOGDEBUG)
 except Exception, e:
     xbmc.log('AUDO: Error Copying unrar for ' + parch, level=xbmc.LOGERROR)
+    xbmc.log(str(e), level=xbmc.LOGERROR)
+
+try:
+    if xbmcvfs.exists(p7za):
+        xbmcvfs.delete(p7za)
+    f7za = xbmc.translatePath(__dependencies__ + '/lib/multiarch/7za.' + parch)
+    xbmcvfs.copy(f7za, p7za)
+    os.chmod(p7za, 0755)
+    xbmc.log('AUDO: Copied 7za for ' + parch, level=xbmc.LOGDEBUG)
+except Exception, e:
+    xbmc.log('AUDO: Error Copying 7za for ' + parch, level=xbmc.LOGERROR)
     xbmc.log(str(e), level=xbmc.LOGERROR)
 
 xbmcvfs.File(xbmc.translatePath(__dependencies__ + '/arch.' + parch), 'w').close()
