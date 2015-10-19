@@ -1,4 +1,5 @@
 0.0.9
+- added transmissionrpc
 - addon now requires helix or above
 
 0.0.8
