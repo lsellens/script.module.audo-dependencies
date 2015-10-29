@@ -9,6 +9,8 @@ __dependencies__      = xbmc.translatePath(__addon__.getAddonInfo('path'))
 
 parch                         = os.uname()[4]
 pnamemapper                   = xbmc.translatePath(__dependencies__ + '/lib/Cheetah/_namemapper.so')
+pobjectify                    = xbmc.translatePath(__dependencies__ + '/lib/lxml/objectify.so')
+petree                        = xbmc.translatePath(__dependencies__ + '/lib/lxml/etree.so')
 pssl                          = xbmc.translatePath(__dependencies__ + '/lib/OpenSSL/SSL.so')
 prand                         = xbmc.translatePath(__dependencies__ + '/lib/OpenSSL/rand.so')
 pcrypto                       = xbmc.translatePath(__dependencies__ + '/lib/OpenSSL/crypto.so')
@@ -39,6 +41,28 @@ try:
     xbmc.log('AUDO: Copied _namemapper.so for ' + parch, level=xbmc.LOGDEBUG)
 except Exception, e:
     xbmc.log('AUDO: Error Copying _namemapper.so for ' + parch, level=xbmc.LOGERROR)
+    xbmc.log(str(e), level=xbmc.LOGERROR)
+
+try:
+    if xbmcvfs.exists(pobjectify):
+        xbmcvfs.delete(pobjectify)
+    fobjectify = xbmc.translatePath(__dependencies__ + '/lib/multiarch/objectify.so.' + parch)
+    xbmcvfs.copy(fobjectify, pobjectify)
+    os.chmod(pobjectify, 0755)
+    xbmc.log('AUDO: Copied objectify.so for ' + parch, level=xbmc.LOGDEBUG)
+except Exception, e:
+    xbmc.log('AUDO: Error Copying objectify.so for ' + parch, level=xbmc.LOGERROR)
+    xbmc.log(str(e), level=xbmc.LOGERROR)
+
+try:
+    if xbmcvfs.exists(petree):
+        xbmcvfs.delete(petree)
+    fobjectify = xbmc.translatePath(__dependencies__ + '/lib/multiarch/etree.so.' + parch)
+    xbmcvfs.copy(fetree, petree)
+    os.chmod(petree, 0755)
+    xbmc.log('AUDO: Copied etree.so for ' + parch, level=xbmc.LOGDEBUG)
+except Exception, e:
+    xbmc.log('AUDO: Error Copying etree.so for ' + parch, level=xbmc.LOGERROR)
     xbmc.log(str(e), level=xbmc.LOGERROR)
 
 try:
