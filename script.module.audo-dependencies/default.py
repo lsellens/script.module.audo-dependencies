@@ -57,7 +57,7 @@ except Exception, e:
 try:
     if xbmcvfs.exists(petree):
         xbmcvfs.delete(petree)
-    fobjectify = xbmc.translatePath(__dependencies__ + '/lib/multiarch/etree.so.' + parch)
+    fetree = xbmc.translatePath(__dependencies__ + '/lib/multiarch/etree.so.' + parch)
     xbmcvfs.copy(fetree, petree)
     os.chmod(petree, 0755)
     xbmc.log('AUDO: Copied etree.so for ' + parch, level=xbmc.LOGDEBUG)
