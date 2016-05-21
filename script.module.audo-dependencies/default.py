@@ -17,6 +17,7 @@ pcrypto                       = xbmc.translatePath(__dependencies__ + '/lib/Open
 plibcrypto                    = xbmc.translatePath(__dependencies__ + '/lib/OpenSSL/libcrypto.so.1.0.0')
 plibssl                       = xbmc.translatePath(__dependencies__ + '/lib/OpenSSL/libssl.so.1.0.0')
 plibcryptolk                  = xbmc.translatePath(__dependencies__ + '/lib/libcrypto.so.1.0.0')
+plibcrypto32lk                = xbmc.translatePath(__dependencies__ + '/lib/libcrypto.so.32')
 plibssllk                     = xbmc.translatePath(__dependencies__ + '/lib/libssl.so.1.0.0')
 pyenc                         = xbmc.translatePath(__dependencies__ + '/lib/_yenc.so')
 ppar2                         = xbmc.translatePath(__dependencies__ + '/bin/par2')
@@ -98,6 +99,7 @@ try:
     flibcrypto = xbmc.translatePath(__dependencies__ + '/lib/multiarch/libcrypto.so.1.0.0.' + parch)
     xbmcvfs.copy(flibcrypto, plibcrypto)
     os.symlink(plibcrypto, plibcryptolk)
+    os.symlink(plibcrypto, plibcrypto32lk)
     xbmc.log('AUDO: Copied libcrypto for ' + parch, level=xbmc.LOGDEBUG)
 except Exception, e:
     xbmc.log('AUDO: Error Copying libcrypto for ' + parch, level=xbmc.LOGERROR)

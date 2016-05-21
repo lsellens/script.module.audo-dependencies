@@ -1,3 +1,6 @@
+0.1.2
+fix libcrypto for transmission
+
 0.1.1
 - removed mako, its now included in sickrage
 
