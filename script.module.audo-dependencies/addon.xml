@@ -11,7 +11,7 @@
              library="lib" />
   <extension point="xbmc.addon.metadata">
     <summary>Dependencies for audo</summary>
-    <description>This is a package of dependancies for audo. Containes multi architecture files of Cheetah, Openssl, configobj, yenc, unrar, par2, and distutils</description>
+    <description>This is a package of dependencies for audo. Containes multi architecture files of Cheetah, Openssl, configobj, yenc, unrar, par2, and distutils</description>
     <platform>linux</platform>
   </extension>
 </addon>
