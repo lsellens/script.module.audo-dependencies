@@ -2,6 +2,8 @@
 update to lxml-3.7.1
 update to pyOpenSSL-16.2.0
 update to openssl-1.0.2j
+update to unrar-5.40
+update to 7za-16.02
 
 0.1.1
 - removed mako, its now included in sickrage
