@@ -11,6 +11,9 @@ parch                         = os.uname()[4]
 pnamemapper                   = xbmc.translatePath(__dependencies__ + '/lib/Cheetah/_namemapper.so')
 pobjectify                    = xbmc.translatePath(__dependencies__ + '/lib/lxml/objectify.so')
 petree                        = xbmc.translatePath(__dependencies__ + '/lib/lxml/etree.so')
+pssl                          = xbmc.translatePath(__dependencies__ + '/lib/OpenSSL/SSL.so')
+prand                         = xbmc.translatePath(__dependencies__ + '/lib/OpenSSL/rand.so')
+pcrypto                       = xbmc.translatePath(__dependencies__ + '/lib/OpenSSL/crypto.so')
 plibcrypto                    = xbmc.translatePath(__dependencies__ + '/lib/OpenSSL/libcrypto.so.1.0.0')
 plibssl                       = xbmc.translatePath(__dependencies__ + '/lib/OpenSSL/libssl.so.1.0.0')
 plibcryptolk                  = xbmc.translatePath(__dependencies__ + '/lib/libcrypto.so.1.0.0')
@@ -57,6 +60,36 @@ try:
     xbmc.log('AUDO: Copied etree.so for ' + parch, level=xbmc.LOGDEBUG)
 except Exception, e:
     xbmc.log('AUDO: Error Copying etree.so for ' + parch, level=xbmc.LOGERROR)
+    xbmc.log(str(e), level=xbmc.LOGERROR)
+
+try:
+    if xbmcvfs.exists(pssl):
+        xbmcvfs.delete(pssl)
+    fssl = xbmc.translatePath(__dependencies__ + '/lib/multiarch/SSL.so.' + parch)
+    xbmcvfs.copy(fssl, pssl)
+    xbmc.log('AUDO: Copied SSL.so for ' + parch, level=xbmc.LOGDEBUG)
+except Exception, e:
+    xbmc.log('AUDO: Error Copying SSL.so for ' + parch, level=xbmc.LOGERROR)
+    xbmc.log(str(e), level=xbmc.LOGERROR)
+
+try:
+    if xbmcvfs.exists(prand):
+        xbmcvfs.delete(prand)
+    frand = xbmc.translatePath(__dependencies__ + '/lib/multiarch/rand.so.' + parch)
+    xbmcvfs.copy(frand, prand)
+    xbmc.log('AUDO: Copied rand.so for ' + parch, level=xbmc.LOGDEBUG)
+except Exception, e:
+    xbmc.log('AUDO: Error Copying rand.so for ' + parch, level=xbmc.LOGERROR)
+    xbmc.log(str(e), level=xbmc.LOGERROR)
+
+try:
+    if xbmcvfs.exists(pcrypto):
+        xbmcvfs.delete(pcrypto)
+    fcrypto = xbmc.translatePath(__dependencies__ + '/lib/multiarch/crypto.so.' + parch)
+    xbmcvfs.copy(fcrypto, pcrypto)
+    xbmc.log('AUDO: Copied crypto.so for ' + parch, level=xbmc.LOGDEBUG)
+except Exception, e:
+    xbmc.log('AUDO: Error Copying crypto.so for ' + parch, level=xbmc.LOGERROR)
     xbmc.log(str(e), level=xbmc.LOGERROR)
 
 try:
