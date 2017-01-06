@@ -4,24 +4,28 @@ import xbmc
 import xbmcaddon
 import xbmcvfs
 
-__addon__             = xbmcaddon.Addon(id='script.module.audo-dependencies')
-__dependencies__      = xbmc.translatePath(__addon__.getAddonInfo('path'))
+__addon__        = xbmcaddon.Addon(id='script.module.audo-dependencies')
+__dependencies__ = xbmc.translatePath(__addon__.getAddonInfo('path'))
 
-parch                         = os.uname()[4]
-pnamemapper                   = xbmc.translatePath(__dependencies__ + '/lib/Cheetah/_namemapper.so')
-pobjectify                    = xbmc.translatePath(__dependencies__ + '/lib/lxml/objectify.so')
-petree                        = xbmc.translatePath(__dependencies__ + '/lib/lxml/etree.so')
-pssl                          = xbmc.translatePath(__dependencies__ + '/lib/OpenSSL/SSL.so')
-prand                         = xbmc.translatePath(__dependencies__ + '/lib/OpenSSL/rand.so')
-pcrypto                       = xbmc.translatePath(__dependencies__ + '/lib/OpenSSL/crypto.so')
-plibcrypto                    = xbmc.translatePath(__dependencies__ + '/lib/OpenSSL/libcrypto.so.1.0.0')
-plibssl                       = xbmc.translatePath(__dependencies__ + '/lib/OpenSSL/libssl.so.1.0.0')
-plibcryptolk                  = xbmc.translatePath(__dependencies__ + '/lib/libcrypto.so.1.0.0')
-plibssllk                     = xbmc.translatePath(__dependencies__ + '/lib/libssl.so.1.0.0')
-pyenc                         = xbmc.translatePath(__dependencies__ + '/lib/_yenc.so')
-ppar2                         = xbmc.translatePath(__dependencies__ + '/bin/par2')
-punrar                        = xbmc.translatePath(__dependencies__ + '/bin/unrar')
-p7za                          = xbmc.translatePath(__dependencies__ + '/bin/7za')
+parch            = os.uname()[4]
+pnamemapper      = xbmc.translatePath(__dependencies__ + '/lib/Cheetah/_namemapper.so')
+pobjectify       = xbmc.translatePath(__dependencies__ + '/lib/lxml/objectify.so')
+petree           = xbmc.translatePath(__dependencies__ + '/lib/lxml/etree.so')
+p_constant_time  = xbmc.translatePath(__dependencies__ + '/lib/cryptography/hazmat/bindings/_constant_time.so')
+p_openssl        = xbmc.translatePath(__dependencies__ + '/lib/cryptography/hazmat/bindings/__openssl.so')
+p_padding        = xbmc.translatePath(__dependencies__ + '/lib/cryptography/hazmat/bindings/_padding.so')
+plibcrypto       = xbmc.translatePath(__dependencies__ + '/lib/OpenSSL/libcrypto.so.1.0.0')
+plibssl          = xbmc.translatePath(__dependencies__ + '/lib/OpenSSL/libssl.so.1.0.0')
+plibcryptolk     = xbmc.translatePath(__dependencies__ + '/lib/libcrypto.so.1.0.0')
+plibssllk        = xbmc.translatePath(__dependencies__ + '/lib/libssl.so.1.0.0')
+plibffi          = xbmc.translatePath(__dependencies__ + '/lib/libffi.so.6.0.4')
+plibffilk        = xbmc.translatePath(__dependencies__ + '/lib/libffi.so.6')
+p_cffi_backend   = xbmc.translatePath(__dependencies__ + '/lib/_cffi_backend.so')
+pyenc            = xbmc.translatePath(__dependencies__ + '/lib/_yenc.so')
+popenssl         = xbmc.translatePath(__dependencies__ + '/bin/openssl')
+ppar2            = xbmc.translatePath(__dependencies__ + '/bin/par2')
+punrar           = xbmc.translatePath(__dependencies__ + '/bin/unrar')
+p7za             = xbmc.translatePath(__dependencies__ + '/bin/7za')
 
 xbmc.log('AUDO: ' + parch + ' architecture detected', level=xbmc.LOGDEBUG)
 
@@ -63,33 +67,33 @@ except Exception, e:
     xbmc.log(str(e), level=xbmc.LOGERROR)
 
 try:
-    if xbmcvfs.exists(pssl):
-        xbmcvfs.delete(pssl)
-    fssl = xbmc.translatePath(__dependencies__ + '/lib/multiarch/SSL.so.' + parch)
-    xbmcvfs.copy(fssl, pssl)
-    xbmc.log('AUDO: Copied SSL.so for ' + parch, level=xbmc.LOGDEBUG)
+    if xbmcvfs.exists(p_constant_time):
+        xbmcvfs.delete(p_constant_time)
+    f_constant_time = xbmc.translatePath(__dependencies__ + '/lib/multiarch/_constant_time.so.' + parch)
+    xbmcvfs.copy(f_constant_time, p_constant_time)
+    xbmc.log('AUDO: Copied _constant_time.so for ' + parch, level=xbmc.LOGDEBUG)
 except Exception, e:
-    xbmc.log('AUDO: Error Copying SSL.so for ' + parch, level=xbmc.LOGERROR)
+    xbmc.log('AUDO: Error Copying _constant_time.so for ' + parch, level=xbmc.LOGERROR)
     xbmc.log(str(e), level=xbmc.LOGERROR)
 
 try:
-    if xbmcvfs.exists(prand):
-        xbmcvfs.delete(prand)
-    frand = xbmc.translatePath(__dependencies__ + '/lib/multiarch/rand.so.' + parch)
-    xbmcvfs.copy(frand, prand)
-    xbmc.log('AUDO: Copied rand.so for ' + parch, level=xbmc.LOGDEBUG)
+    if xbmcvfs.exists(p_openssl):
+        xbmcvfs.delete(p_openssl)
+    f_openssl = xbmc.translatePath(__dependencies__ + '/lib/multiarch/_openssl.so.' + parch)
+    xbmcvfs.copy(f_openssl, p_openssl)
+    xbmc.log('AUDO: Copied _openssl.so for ' + parch, level=xbmc.LOGDEBUG)
 except Exception, e:
-    xbmc.log('AUDO: Error Copying rand.so for ' + parch, level=xbmc.LOGERROR)
+    xbmc.log('AUDO: Error Copying _openssl.so for ' + parch, level=xbmc.LOGERROR)
     xbmc.log(str(e), level=xbmc.LOGERROR)
 
 try:
-    if xbmcvfs.exists(pcrypto):
-        xbmcvfs.delete(pcrypto)
-    fcrypto = xbmc.translatePath(__dependencies__ + '/lib/multiarch/crypto.so.' + parch)
-    xbmcvfs.copy(fcrypto, pcrypto)
-    xbmc.log('AUDO: Copied crypto.so for ' + parch, level=xbmc.LOGDEBUG)
+    if xbmcvfs.exists(p_padding):
+        xbmcvfs.delete(p_padding)
+    f_padding = xbmc.translatePath(__dependencies__ + '/lib/multiarch/_padding.so.' + parch)
+    xbmcvfs.copy(f_padding, p_padding)
+    xbmc.log('AUDO: Copied _padding.so for ' + parch, level=xbmc.LOGDEBUG)
 except Exception, e:
-    xbmc.log('AUDO: Error Copying crypto.so for ' + parch, level=xbmc.LOGERROR)
+    xbmc.log('AUDO: Error Copying _padding.so for ' + parch, level=xbmc.LOGERROR)
     xbmc.log(str(e), level=xbmc.LOGERROR)
 
 try:
@@ -115,6 +119,27 @@ except Exception, e:
     xbmc.log(str(e), level=xbmc.LOGERROR)
 
 try:
+    if xbmcvfs.exists(plibffi):
+        xbmcvfs.delete(plibffi)
+    flibffi = xbmc.translatePath(__dependencies__ + '/lib/multiarch/libffi.so.6.0.4.' + parch)
+    xbmcvfs.copy(flibffi, plibffi)
+    os.symlink(plibffi, plibffilk)
+    xbmc.log('AUDO: Copied libffi for ' + parch, level=xbmc.LOGDEBUG)
+except Exception, e:
+    xbmc.log('AUDO: Error Copying libffi for ' + parch, level=xbmc.LOGERROR)
+    xbmc.log(str(e), level=xbmc.LOGERROR)
+
+try:
+    if xbmcvfs.exists(p_cffi_backend):
+        xbmcvfs.delete(p_cffi_backend)
+    f_cffi_backend = xbmc.translatePath(__dependencies__ + '/lib/multiarch/_cffi_backend.so.' + parch)
+    xbmcvfs.copy(f_cffi_backend, p_cffi_backend)
+    xbmc.log('AUDO: Copied _cffi_backend.so for ' + parch, level=xbmc.LOGDEBUG)
+except Exception, e:
+    xbmc.log('AUDO: Error Copying _cffi_backend.so for ' + parch, level=xbmc.LOGERROR)
+    xbmc.log(str(e), level=xbmc.LOGERROR)
+
+try:
     if xbmcvfs.exists(pyenc):
         xbmcvfs.delete(pyenc)
     fyenc = xbmc.translatePath(__dependencies__ + '/lib/multiarch/_yenc.so.' + parch)
@@ -122,6 +147,17 @@ try:
     xbmc.log('AUDO: Copied _yenc.so for ' + parch, level=xbmc.LOGDEBUG)
 except Exception, e:
     xbmc.log('AUDO: Error Copying _yenc.so for ' + parch, level=xbmc.LOGERROR)
+    xbmc.log(str(e), level=xbmc.LOGERROR)
+
+try:
+    if xbmcvfs.exists(popenssl):
+        xbmcvfs.delete(popenssl)
+    fopenssl = xbmc.translatePath(__dependencies__ + '/lib/multiarch/openssl.' + parch)
+    xbmcvfs.copy(fopenssl, popenssl)
+    os.chmod(popenssl, 0755)
+    xbmc.log('AUDO: Copied openssl for ' + parch, level=xbmc.LOGDEBUG)
+except Exception, e:
+    xbmc.log('AUDO: Error Copying openssl for ' + parch, level=xbmc.LOGERROR)
     xbmc.log(str(e), level=xbmc.LOGERROR)
 
 try:
