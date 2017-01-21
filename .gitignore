@@ -2,3 +2,7 @@ build*
 build*/*
 target
 target/*
+mkpkg/build.*
+mkpkg/build.*/*
+mkpkg/sources
+mkpkg/sources/*
