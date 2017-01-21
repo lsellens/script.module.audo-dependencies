@@ -12,7 +12,7 @@ pnamemapper      = xbmc.translatePath(__dependencies__ + '/lib/Cheetah/_namemapp
 pobjectify       = xbmc.translatePath(__dependencies__ + '/lib/lxml/objectify.so')
 petree           = xbmc.translatePath(__dependencies__ + '/lib/lxml/etree.so')
 p_constant_time  = xbmc.translatePath(__dependencies__ + '/lib/cryptography/hazmat/bindings/_constant_time.so')
-p_openssl        = xbmc.translatePath(__dependencies__ + '/lib/cryptography/hazmat/bindings/__openssl.so')
+p_openssl        = xbmc.translatePath(__dependencies__ + '/lib/cryptography/hazmat/bindings/_openssl.so')
 p_padding        = xbmc.translatePath(__dependencies__ + '/lib/cryptography/hazmat/bindings/_padding.so')
 plibcrypto       = xbmc.translatePath(__dependencies__ + '/lib/OpenSSL/libcrypto.so.1.0.0')
 plibssl          = xbmc.translatePath(__dependencies__ + '/lib/OpenSSL/libssl.so.1.0.0')
@@ -22,7 +22,6 @@ plibffi          = xbmc.translatePath(__dependencies__ + '/lib/libffi.so.6.0.4')
 plibffilk        = xbmc.translatePath(__dependencies__ + '/lib/libffi.so.6')
 p_cffi_backend   = xbmc.translatePath(__dependencies__ + '/lib/_cffi_backend.so')
 pyenc            = xbmc.translatePath(__dependencies__ + '/lib/_yenc.so')
-popenssl         = xbmc.translatePath(__dependencies__ + '/bin/openssl')
 ppar2            = xbmc.translatePath(__dependencies__ + '/bin/par2')
 punrar           = xbmc.translatePath(__dependencies__ + '/bin/unrar')
 p7za             = xbmc.translatePath(__dependencies__ + '/bin/7za')
@@ -147,17 +146,6 @@ try:
     xbmc.log('AUDO: Copied _yenc.so for ' + parch, level=xbmc.LOGDEBUG)
 except Exception, e:
     xbmc.log('AUDO: Error Copying _yenc.so for ' + parch, level=xbmc.LOGERROR)
-    xbmc.log(str(e), level=xbmc.LOGERROR)
-
-try:
-    if xbmcvfs.exists(popenssl):
-        xbmcvfs.delete(popenssl)
-    fopenssl = xbmc.translatePath(__dependencies__ + '/lib/multiarch/openssl.' + parch)
-    xbmcvfs.copy(fopenssl, popenssl)
-    os.chmod(popenssl, 0755)
-    xbmc.log('AUDO: Copied openssl for ' + parch, level=xbmc.LOGDEBUG)
-except Exception, e:
-    xbmc.log('AUDO: Error Copying openssl for ' + parch, level=xbmc.LOGERROR)
     xbmc.log(str(e), level=xbmc.LOGERROR)
 
 try:

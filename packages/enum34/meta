@@ -1,0 +1,4 @@
+PKG_NAME="enum34"
+PKG_VERSION="1.1.6"
+PKG_URL="https://pypi.python.org/packages/bf/3e/31d502c25302814a7c2f1d3959d2a3b3f78e509002ba91aea64993936876/$PKG_NAME-$PKG_VERSION.tar.gz"
+PKG_DEPENDS=""

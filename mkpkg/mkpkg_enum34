@@ -1,0 +1,56 @@
+#!/bin/sh
+
+. packages/enum34/meta
+
+for i in $PKG_DEPENDS;do
+  if [ ! -f build/stamps/$i ]; then
+    mkpkg/mkpkg_$i
+    if [ "$?" -ne "0" ]; then
+      echo "Error building $i";exit 1
+    fi
+  fi
+done
+
+cd mkpkg
+
+echo "building $PKG_NAME..."
+  if [ ! -f sources/$PKG_NAME-$PKG_VERSION.tar.gz ]; then
+    echo "getting sources..."
+    wget $PKG_URL
+    if [ "$?" -ne "0" ]; then
+      echo "error downloading source: $PKG_NAME";exit 1
+    fi
+    mkdir -p sources
+    mv $PKG_NAME-$PKG_VERSION.tar.gz sources/$PKG_NAME-$PKG_VERSION.tar.gz
+  fi
+
+echo "extracting sources..."
+  rm -rf $PKG_NAME-$PKG_VERSION
+  tar xzf sources/$PKG_NAME-$PKG_VERSION.tar.gz
+  if [ "$?" -ne "0" ]; then
+    echo "error extracting source: $PKG_NAME";exit 1
+  fi
+
+for i in patches/$PKG_NAME-$PKG_VERSION*.patch; do
+  if [ -f "$i" ]; then
+    echo "patching sources..."
+    echo $i
+    cat $i | patch -p1 -d `echo "$PKG_NAME-$PKG_VERSION" | cut -f1 -d\ `
+    if [ "$?" -ne "0" ]; then
+      echo "error patching source: $PKG_NAME";exit 1
+    fi
+  fi
+done
+
+echo "moving sources..."
+  cp $PKG_NAME-$PKG_VERSION/enum/__init__.py ../build/script.module.audo-dependencies/lib/enum/__init__.py
+  if [ "$?" -ne "0" ]; then
+    echo "error building $PKG_NAME";exit 1
+  fi
+rm -rf $PKG_NAME-$PKG_VERSION
+echo "$PKG_NAME done"
+
+touch ../build/stamps/$PKG_NAME
+
+exit 0
+

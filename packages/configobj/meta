@@ -1,0 +1,4 @@
+PKG_NAME="configobj"
+PKG_VERSION="4.7.2"
+PKG_URL="http://voidspace.org.uk/downloads/$PKG_NAME-$PKG_VERSION.zip"
+PKG_BUILD=""

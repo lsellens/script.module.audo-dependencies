@@ -1,0 +1,57 @@
+#!/bin/sh
+
+. packages/configobj/meta
+
+for i in $PKG_DEPENDS;do
+  if [ ! -f build/stamps/$i ]; then
+    mkpkg/mkpkg_$i
+    if [ "$?" -ne "0" ]; then
+      echo "Error building $i";exit 1
+    fi
+  fi
+done
+
+cd mkpkg
+
+echo "building $PKG_NAME..."
+  if [ ! -f sources/$PKG_NAME-$PKG_VERSION.zip ]; then
+    echo "getting sources..."
+    wget $PKG_URL
+    if [ "$?" -ne "0" ]; then
+      echo "error downloading source: $PKG_NAME";exit 1
+    fi
+    mkdir -p sources
+    mv $PKG_NAME-$PKG_VERSION.zip sources/$PKG_NAME-$PKG_VERSION.zip
+  fi
+
+echo "extracting sources..."
+  rm -rf $PKG_NAME-$PKG_VERSION
+  unzip -q sources/$PKG_NAME-$PKG_VERSION.zip
+  if [ "$?" -ne "0" ]; then
+    echo "error extracting source: $PKG_NAME";exit 1
+  fi
+  rm -rf __MACOSX
+
+for i in patches/$PKG_NAME-$PKG_VERSION*.patch; do
+  if [ -f "$i" ]; then
+    echo "patching sources..."
+    echo $i
+    cat $i | patch -p1 -d `echo "$PKG_NAME-$PKG_VERSION" | cut -f1 -d\ `
+    if [ "$?" -ne "0" ]; then
+      echo "error patching source: $PKG_NAME";exit 1
+    fi
+  fi
+done
+
+echo "moving sources..."
+  cp $PKG_NAME-$PKG_VERSION/$PKG_NAME.py ../build/script.module.audo-dependencies/lib/$PKG_NAME.py
+  if [ "$?" -ne "0" ]; then
+    echo "error building $PKG_NAME";exit 1
+  fi
+rm -rf $PKG_NAME-$PKG_VERSION
+echo "$PKG_NAME done"
+
+touch ../build/stamps/$PKG_NAME
+
+exit 0
+
