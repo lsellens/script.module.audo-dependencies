@@ -1,13 +1,18 @@
+0.1.3
+- added sabyenc-3.0.2
+- added par2cmdline-mt-v0.6.14-mt1
+- removed par2-0.4
+
 0.1.2
-update to lxml-3.7.1
-update to pyOpenSSL-16.2.0
-update to openssl-1.0.2j
-update to unrar-5.40
-update to 7za-16.02
-added cryptography-1.7.1
-added enum34-1.1.6
-added cffi-1.9.1
-added libffi.so.6.0.4
+- update to lxml-3.7.1
+- update to pyOpenSSL-16.2.0
+- update to openssl-1.0.2j
+- update to unrar-5.40
+- update to 7za-16.02
+- added cryptography-1.7.1
+- added enum34-1.1.6
+- added cffi-1.9.1
+- added libffi.so.6.0.4
 
 0.1.1
 - removed mako, its now included in sickrage

@@ -22,6 +22,7 @@ plibffi          = xbmc.translatePath(__dependencies__ + '/lib/libffi.so.6.0.4')
 plibffilk        = xbmc.translatePath(__dependencies__ + '/lib/libffi.so.6')
 p_cffi_backend   = xbmc.translatePath(__dependencies__ + '/lib/_cffi_backend.so')
 pyenc            = xbmc.translatePath(__dependencies__ + '/lib/_yenc.so')
+psabyenc         = xbmc.translatePath(__dependencies__ + '/lib/sabyenc.so')
 ppar2            = xbmc.translatePath(__dependencies__ + '/bin/par2')
 punrar           = xbmc.translatePath(__dependencies__ + '/bin/unrar')
 p7za             = xbmc.translatePath(__dependencies__ + '/bin/7za')
@@ -146,6 +147,16 @@ try:
     xbmc.log('AUDO: Copied _yenc.so for ' + parch, level=xbmc.LOGDEBUG)
 except Exception, e:
     xbmc.log('AUDO: Error Copying _yenc.so for ' + parch, level=xbmc.LOGERROR)
+    xbmc.log(str(e), level=xbmc.LOGERROR)
+
+try:
+    if xbmcvfs.exists(psabyenc):
+        xbmcvfs.delete(psabyenc)
+    fsabyenc = xbmc.translatePath(__dependencies__ + '/lib/multiarch/sabyenc.so.' + parch)
+    xbmcvfs.copy(fsabyenc, psabyenc)
+    xbmc.log('AUDO: Copied sabyenc.so for ' + parch, level=xbmc.LOGDEBUG)
+except Exception, e:
+    xbmc.log('AUDO: Error Copying sabyenc.so for ' + parch, level=xbmc.LOGERROR)
     xbmc.log(str(e), level=xbmc.LOGERROR)
 
 try:
