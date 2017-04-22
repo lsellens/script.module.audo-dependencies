@@ -23,6 +23,7 @@ plibffilk        = xbmc.translatePath(__dependencies__ + '/lib/libffi.so.6')
 p_cffi_backend   = xbmc.translatePath(__dependencies__ + '/lib/_cffi_backend.so')
 pyenc            = xbmc.translatePath(__dependencies__ + '/lib/_yenc.so')
 psabyenc         = xbmc.translatePath(__dependencies__ + '/lib/sabyenc.so')
+plibgomp         = xbmc.translatePath(__dependencies__ + '/lib/libgomp.so.1')
 ppar2            = xbmc.translatePath(__dependencies__ + '/bin/par2')
 punrar           = xbmc.translatePath(__dependencies__ + '/bin/unrar')
 p7za             = xbmc.translatePath(__dependencies__ + '/bin/7za')
@@ -157,6 +158,17 @@ try:
     xbmc.log('AUDO: Copied sabyenc.so for ' + parch, level=xbmc.LOGDEBUG)
 except Exception, e:
     xbmc.log('AUDO: Error Copying sabyenc.so for ' + parch, level=xbmc.LOGERROR)
+    xbmc.log(str(e), level=xbmc.LOGERROR)
+
+try:
+    if parch != 'armv6l':
+        if xbmcvfs.exists(plibgomp):
+            xbmcvfs.delete(plibgomp)
+        flibgomp = xbmc.translatePath(__dependencies__ + '/lib/multiarch/libgomp.so.1.' + parch)
+        xbmcvfs.copy(flibgomp, plibgomp)
+        xbmc.log('AUDO: Copied libgomp.so.1 for ' + parch, level=xbmc.LOGDEBUG)
+except Exception, e:
+    xbmc.log('AUDO: Error Copying libgomp.so.1 for ' + parch, level=xbmc.LOGERROR)
     xbmc.log(str(e), level=xbmc.LOGERROR)
 
 try:
