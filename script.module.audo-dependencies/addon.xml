@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="script.module.audo-dependencies"
        name="audo-dependencies"
-       version="0.1.4~beta1"
+       version="0.1.4~beta2"
        provider-name="lsellens">
   <requires>
     <import addon="xbmc.addon" version="14.0.0"/>
@@ -16,5 +16,11 @@
     <description lang="sv">Detta är ett paket med beroenden för audo. Innehåller flera arkitekturfiler av Cheetah, OpenSSL, configobj, yenc, unrar, par2, och distutils</description>
     <language>en hy_AM ca_ES nl fr de fa pl pt pt_BR es sv tr</language>
     <platform>linux</platform>
+    <license>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</license>
+    <source>https://github.com/lsellens/script.module.audo-dependencies</source>
+    <news>0.1.4 - update to par2cmdline-v0.7.0, add en-US locale for sabnzbd</news>
+    <assets>
+      <icon>icon.png</icon>
+    </assets>
   </extension>
 </addon>
