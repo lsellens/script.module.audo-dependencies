@@ -1,6 +1,5 @@
 0.1.4
 - update to par2cmdline-v0.7.0
-- add en-US locale for sabnzbd
 
 0.1.3
 - added sabyenc-3.0.2
